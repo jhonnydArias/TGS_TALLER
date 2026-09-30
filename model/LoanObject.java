@@ -5,10 +5,12 @@ public class LoanObject {
     private boolean isAvailable;
 
 
+
     public LoanObject(int id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.isAvailable = true;
     }
     public int getId() {
         return id;
@@ -27,6 +29,12 @@ public class LoanObject {
     }
     public void setDescription(String description) {
         this.description = description;
+    }
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+    public void setAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
     }
 
 

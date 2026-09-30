@@ -18,7 +18,7 @@ public class Loan {
 
     // Getters and Setters
     public User getUser() {
-        return user;
+        return user;    
     }
 
     public void setUser(User user) {

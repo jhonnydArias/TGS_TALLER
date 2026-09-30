@@ -16,5 +16,23 @@ public class LoanRecord {
     public void setLoans(ArrayList<Loan> loans) {
         this.loans = loans;
     }
+
+    public void searchByUserName (String userName){
+
+    }
+
+    public void searchByUserId (int userId){
+
+    }
+
+    public void searchByLoanObjectName (String name){
+
+    }
+
+    public void searchByLoanObjectId (int id){
+
+    }
+
+    
         
 }
