@@ -36,9 +36,13 @@ public class Inventory {
         return null;
     }
 
-    public void createLoanObject ( int id, String name, String description){
+    public boolean createLoanObject ( int id, String name, String description){
+        if (searchById(id) != null || searhByName(name) != null) {
+            return false; 
+        }
         LoanObject loanObject = new LoanObject(id, name, description);
         loanObjects.add(loanObject);
+        return true;
     }
 
     public boolean deleteLoanObjectById (int id){
@@ -58,5 +62,15 @@ public class Inventory {
         }
         return false;
     }   
+
+    public boolean updateStatusLoanObject (int id, boolean isAvailable){
+        LoanObject loanObject = searchById(id);
+        if (loanObject != null) {
+            loanObject.setAvailable(isAvailable);
+            return true;
+        }
+        return false;
+    }
+
 
 }

@@ -1,15 +1,22 @@
 public class User {
     private int id;
     private String name;
-    private String AcademicProgram;
+    private String academicProgram;
     private boolean isAdmin;
 
     
-    public User(int id, String name, String AcademicProgram, boolean isAdmin) {
+    public User(int id, String name, String academicProgram, boolean isAdmin) {
         this.id = id;
         this.name = name;
         this.isAdmin = isAdmin;
-        this.AcademicProgram = AcademicProgram;
+        this.academicProgram = academicProgram;
+    }
+
+    public User(int id, String name, String academicProgram) {
+        this.id = id;
+        this.name = name;
+        this.isAdmin = false;
+        this.academicProgram = academicProgram;
     }
     public int getId() {
         return id;

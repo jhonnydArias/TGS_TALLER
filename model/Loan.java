@@ -3,7 +3,7 @@ import java.sql.Date;
 public class Loan {
     private User user;
     private LoanObject loanObject;
-    private Date loanDate;
+    private Date loanDate;  
     private Date returnDate;
 
     // Constructors
