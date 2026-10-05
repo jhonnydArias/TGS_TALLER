@@ -1,10 +1,7 @@
-//CREACION DE LA CLASE SYSTEM, QUE CONTIENE EL INVENTARIO Y EL REGISTRO DE PRÉSTAMOS, "union de todaas las clases logicas"
+package model;
 
 import java.util.ArrayList;
 
-/**
- * System
- */
 public class LabSystem {
 
     private Inventory inventory;
@@ -42,11 +39,10 @@ public class LabSystem {
     }
 
     public boolean deleteLoanObjectById(int id) {
+        if(loanRecord.searchActiveByLoanObjectId(id) != null){
+            return false;
+        }
         return inventory.deleteLoanObjectById(id);
-    }
-
-    public boolean updateStatusLoanObject(int id, boolean isAvailable) {
-        return inventory.updateStatusLoanObject(id, isAvailable);
     }
 
     //FUNCIONES DEL ADMINISTRADOR EN EL REGISTRO DE PRÉSTAMOS
@@ -77,6 +73,32 @@ public class LabSystem {
 
     public boolean addLoan(int objectId, int userId, String userName, String academicProgram) {
         LoanObject loanObject = inventory.searchById(objectId);
-        return loanRecord.addLoan(loanObject, userId, userName, academicProgram);
+
+        if (loanObject == null) { //el equipo no existe
+            return false;
+        }
+        if (!loanObject.isAvailable()) { //ya está prestado
+            return false;
+        }
+
+        loanRecord.addLoan(loanObject, userId, userName, academicProgram);
+        loanObject.setAvailable(false); // pasa a no disponible
+        return true;
+    }
+
+    public boolean returnLoan(int objectId) {
+        LoanObject loanObject = inventory.searchById(objectId);
+
+        if (loanObject == null) { //el equipo no existe
+            return false;
+        }
+
+        Loan activeLoan = loanRecord.searchActiveByLoanObjectId(objectId);
+        if (activeLoan != null) {
+            activeLoan.setReturnDate(new java.sql.Date(System.currentTimeMillis()));
+            loanObject.setAvailable(true); // pasa a disponible
+            return true;
+        }
+        return false; //no se encontró un préstamo activo para este objeto
     }
 }

@@ -1,3 +1,5 @@
+package model;
+
 public class LoanObject {
     private int id;
     private String brand;
@@ -47,5 +49,4 @@ public class LoanObject {
     public void setAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
-
 }
