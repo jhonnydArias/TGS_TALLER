@@ -13,31 +13,37 @@ package utilities;
     public static final String PRESS_ENTER = "Presione Enter para continuar...";
 
     // MENU PRINCIPAL
-    public static final String MAIN_MENU_TITLE = "\n MENU PRINCIPAL";
-    public static final String MAIN_OPTION_LOAN = "1. Prestar un equipo";
-    public static final String MAIN_OPTION_RETURN = "2. Devolver un equipo";
-    public static final String MAIN_OPTION_INVENTORY = "3. Consultar inventario de equipos";
-    public static final String MAIN_OPTION_LOANS = "4. Consultar registro de préstamos";
-    public static final String MAIN_OPTION_CREATE = "5. Registrar un equipo nuevo";
-    public static final String MAIN_OPTION_DELETE = "6. Eliminar un equipo del inventario";
-    public static final String MAIN_OPTION_EXIT = "0. Salir";
+    public static final String[] MAIN_MENU_TITLE = {
+        "\n MENU PRINCIPAL",
+        "\n 1. Prestar un equipo",
+        "\n 2. Devolver un equipo",
+        "\n 3. Consultar inventario de equipos",
+        "\n 4. Consultar registro de préstamos",
+        "\n 5. Registrar un equipo nuevo",
+        "\n 6. Eliminar un equipo del inventario",
+        "\n 0. Salir"
+    };
 
     //SUBMENU: INVENTARIO
-    public static final String INVENTORY_MENU_TITLE = "\n CONSULTAR INVENTARIO DE EQUIPOS";
-    public static final String INVENTORY_OPTION_ALL = "1. Ver todos los equipos";
-    public static final String INVENTORY_OPTION_AVAILABLE = "2. Ver solo los equipos disponibles para préstamo";
-    public static final String INVENTORY_OPTION_BY_TYPE = "3. Buscar equipos por tipo";
-    public static final String INVENTORY_OPTION_BY_ID = "4. Buscar un equipo por número de inventario";
-    public static final String OPTION_BACK = "0. Volver al menu principal";
+    public static final String[] INVENTORY_MENU_TITLE = {
+        "\n CONSULTAR INVENTARIO DE EQUIPOS",
+        "\n 1. Ver todos los equipos",
+        "\n 2. Ver solo los equipos disponibles para préstamo", 
+        "\n 3. Buscar equipos por tipo",
+        "\n 4. Buscar un equipo por número de inventario",
+        "\n 0. Volver al menu principal"
+    };
 
-    //SUBMENU: PRÉSTAMOS
-    public static final String LOANS_MENU_TITLE = "\n CONSULTAR PRÉSTAMOS";
-    public static final String LOANS_OPTION_ALL_ACTIVE = "1. Ver préstamos activos";
-    public static final String LOANS_OPTION_ACTIVE_BY_TYPE = "2. Ver préstamos activos de un tipo de equipo";
-    public static final String LOANS_OPTION_HISTORY_BY_OBJECT = "3. Historial de un equipo";
-    public static final String LOANS_OPTION_HISTORY_BY_TYPE = "4. Historial de un tipo de equipo";
-    public static final String LOANS_OPTION_HISTORY_BY_USER_ID = "5. Historial de una persona (por identificacion)";
-    public static final String LOANS_OPTION_HISTORY_BY_USER_NAME = "6. Historial de una persona (por nombre)";
+    // SUBMENU: PRÉSTAMOS
+    public static final String[] LOANS_MENU_TITLE = { "\n CONSULTAR PRÉSTAMOS", 
+        "\n 1. Ver préstamos activos", 
+        "\n 2. Ver préstamos activos de un tipo de equipo", 
+        "\n 3. Historial de un equipo", 
+        "\n 4. Historial de un tipo de equipo", 
+        "\n 5. Historial de una persona (por identificacion)", 
+        "\n 6. Historial de una persona (por nombre)", 
+        "\n 0. Volver al menu principal" 
+    };
 
     //DATOS QUE PIDE LA VISTA
     public static final String ASK_OBJECT_ID = "Número de inventario del equipo: ";
