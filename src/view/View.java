@@ -8,9 +8,9 @@ import model.LoanObject;
 import utilities.Utils;
 
 public class View {
-    private final Scanner scanner = new Scanner(System.in); // único Scanner del programa
+    private final Scanner scanner = new Scanner(System.in);
 
-    // ---------------------- MENSAJES Y LECTURA ----------------------
+    //MENSAJES Y LECTURA
 
     public void showMessage(String message) {
         System.out.println(message);
@@ -21,7 +21,6 @@ public class View {
         return scanner.nextLine();
     }
 
-    // Repite la pregunta si el texto está vacío o contiene ';' (separador del CSV)
     public String readRequiredString(String message) {
         while (true) {
             String text = readString(message).trim();
@@ -35,7 +34,6 @@ public class View {
         }
     }
 
-    // Lee una línea completa: Enter vacío o texto no numérico cuentan como un solo error
     public int readInt(String message) {
         while (true) {
             String text = readString(message).trim();
@@ -63,15 +61,15 @@ public class View {
     }
 
     public void showMainMenu() {
-        showMenu(Utils.MAIN_MENU_TITLE);
+        showMenu(Utils.MAIN_MENU);
     }
 
     public void showInventoryMenu() {
-        showMenu(Utils.INVENTORY_MENU_TITLE);
+        showMenu(Utils.INVENTORY_MENU);
     }
 
     public void showLoansMenu() {
-        showMenu(Utils.LOANS_MENU_TITLE);
+        showMenu(Utils.LOANS_MENU);
     }
 
     //TABLAS
