@@ -60,13 +60,8 @@ public class View {
         System.out.println();
     }
 
-<<<<<<< HEAD
-    public void showMainMenu() {    
-        showMenu(Utils.MAIN_MENU_TITLE);
-=======
     public void showMainMenu() {
         showMenu(Utils.MAIN_MENU);
->>>>>>> e0caae1bde38dd7e9c3084fe91fde521bbc31567
     }
 
     public void showInventoryMenu() {
