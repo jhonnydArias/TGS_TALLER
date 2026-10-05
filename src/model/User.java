@@ -1,3 +1,5 @@
+package model;
+
 public class User {
     private int id;
     private String name;
@@ -35,6 +37,12 @@ public class User {
     }
     public void setAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
+    }
+    public String getAcademicProgram() {
+    return academicProgram;
+    }
+    public void setAcademicProgram(String academicProgram) {
+        this.academicProgram = academicProgram;
     }
     
 }

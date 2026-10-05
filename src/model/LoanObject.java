@@ -1,29 +1,40 @@
 public class LoanObject {
     private int id;
-    private String name;
+    private String brand;
+    private String type;
     private String description;
     private boolean isAvailable;
 
 
-
-    public LoanObject(int id, String name, String description) {
+    public LoanObject(int id, String brand, String type, String description) {
         this.id = id;
-        this.name = name;
+        this.brand = brand;
+        this.type = type;
         this.description = description;
-        this.isAvailable = true;
+        this.isAvailable = true; 
     }
+
     public int getId() {
         return id;
     }
     public void setId(int id) {
         this.id = id;
     }
-    public String getName() {
-        return name;
+
+    public String getBrand() {
+        return brand;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }   
+    
+    public String getType() {
+        return type;
     }
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -36,7 +47,5 @@ public class LoanObject {
     public void setAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
-
-
 
 }

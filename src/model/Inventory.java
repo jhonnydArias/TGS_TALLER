@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 
 public class Inventory {
@@ -17,14 +19,14 @@ public class Inventory {
         this.loanObjects = loanObjects;
     }
 
-    public LoanObject searhByName (String name){
+    public ArrayList<LoanObject> searchByType(String type){
+        ArrayList<LoanObject> results = new ArrayList<>();
         for (LoanObject loanObject : loanObjects) {
-            if (loanObject.getName().equals(name)) {
-                return loanObject;
+            if (loanObject.getType().equalsIgnoreCase(type)) {
+                results.add(loanObject);
             }
         }
-        return null;
-
+        return results;
     }
 
     public LoanObject searchById (int id){
@@ -36,11 +38,11 @@ public class Inventory {
         return null;
     }
 
-    public boolean createLoanObject ( int id, String name, String description){
-        if (searchById(id) != null || searhByName(name) != null) {
+    public boolean createLoanObject (int id, String brand, String type, String description){
+        if (searchById(id) != null) {
             return false; 
         }
-        LoanObject loanObject = new LoanObject(id, name, description);
+        LoanObject loanObject = new LoanObject(id, brand, type, description);
         loanObjects.add(loanObject);
         return true;
     }
@@ -54,23 +56,12 @@ public class Inventory {
         return false;
     }
 
-    public boolean deleteLoanObjectByName (String name){
-        LoanObject loanObject = searhByName(name);
-        if (loanObject != null) {
-            loanObjects.remove(loanObject);
-            return true;
-        }
-        return false;
-    }   
-
-    public boolean updateStatusLoanObject (int id, boolean isAvailable){
+    /*public boolean updateStatusLoanObject (int id, boolean isAvailable){
         LoanObject loanObject = searchById(id);
         if (loanObject != null) {
             loanObject.setAvailable(isAvailable);
             return true;
         }
         return false;
-    }
-
-
+    }*/
 }
