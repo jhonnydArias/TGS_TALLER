@@ -1,11 +1,11 @@
 idEquipo;idUsuario;nombre;programa;fechaPrestamo;fechaDevolucion
-101;1052391234;Laura Gómez;Ingeniería de Sistemas;2026-08-18;2026-08-18
-101;1049872310;Carlos Pérez;Ingeniería de Sistemas;2026-09-02;2026-09-02
-103;1053004567;Andrea Rojas;Ingeniería Electrónica;2026-09-15;2026-09-17
-201;74381920;Prof. Mario Salcedo;Ingeniería de Sistemas;2026-08-25;2026-08-26
-202;1052398765;Julián Torres;Ingeniería Industrial;2026-09-22;2026-09-22
-301;1050112233;Camila Vargas;Ingeniería de Sistemas;2026-09-29;2026-09-29
-401;1049555123;Sebastián Díaz;Ingeniería Electrónica;2026-10-02;-
-201;40012345;Prof. Elena Ruiz;Ingeniería de Sistemas;2026-09-10;-
-203;1052345678;Daniela Castro;Ingeniería Industrial;2026-09-08;-
-102;1053111222;Felipe Moreno;Ingeniería de Sistemas;2026-10-05;-
+101;1052391234;Laura Gomez;Ingenieria de Sistemas;2026-08-18;2026-08-18
+101;1049872310;Carlos Perez;Ingenieria de Sistemas;2026-09-02;2026-09-02
+103;1053004567;Andrea Rojas;Ingenieria Electronica;2026-09-15;2026-09-17
+201;74381920;Prof. Mario Salcedo;Ingenieria de Sistemas;2026-08-25;2026-08-26
+202;1052398765;Julian Torres;Ingenieria Industrial;2026-09-22;2026-09-22
+301;1050112233;Camila Vargas;Ingenieria de Sistemas;2026-09-29;2026-09-29
+401;1049555123;Sebastian Diaz;Ingenieria Electronica;2026-10-02;-
+201;40012345;Prof. Elena Ruiz;Ingenieria de Sistemas;2026-09-10;-
+203;1052345678;Daniela Castro;Ingenieria Industrial;2026-09-08;-
+102;1053111222;Felipe Moreno;Ingenieria de Sistemas;2026-10-05;-
