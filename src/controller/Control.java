@@ -1,12 +1,15 @@
-import model.labSystem;
+import java.util.ArrayList;
+
+import model.LabSystem;
+import model.Loan;
 import view.View;
 package controller;
 
 public class Control {
-    private labSystem labSystem;
+    private LabSystem labSystem;
     private View  view;
 
-    public Control(labSystem labSystem, View view) {
+    public Control(LabSystem labSystem, View view) {
         this.labSystem = labSystem;
         this.view = view;
         this.run();
@@ -27,11 +30,11 @@ public class Control {
             option = view.showMessage("menu");
         }
     }
-
+//=========================METODOS DE LOS SWITCHCASE=======================================================
     private void searchObjectByID(){
         try{
             int id = view.readInt("id");
-            view.showMessage(labSystem.searchById(id).toString());
+            view.showMessage(labSystem.searchLoanObjectById(id).toString());
         }
         catch (Exception e) {
             view.showMessage("Error al buscaar el objeto con el id " + e.getMessage());
@@ -60,5 +63,34 @@ public class Control {
         }
     }
 
-    private void deleteLoa
+    private void deleteLoaObjectById(){
+        int id = view.readInt("Enter the ID of the loan object to delete: ");
+        boolean deleted = labSystem.deleteLoanObjectById(id);
+        if (deleted) {
+            view.showMessage("Objeto eliminado con exito");
+        } else {
+            view.showMessage("Error: el objeto no existe o tiene un prestamo activo");
+        }
+    }
+
+    private void searchLoanByUserName(){
+        String userNAme  = view.readString("Enter the user name to search for loans: ");
+        if (labSystem.searchLoanByUserName(userNAme).isEmpty()) {
+            view.showMessage("No se encontraron préstamos para el usuario: " + userNAme);
+        } else {
+                view.showArray(labSystem.searchLoanByUserName(userNAme));
+        }
+    }
+
+    private void searchLoanByUserId(){
+        int userId = view.readInt("Enter the user ID to search for loans: ");
+        if (labSystem.searchLoanByUserId(userId).isEmpty()) {
+            view.showMessage("No se encontraron préstamos para el usuario con ID: " + userId);
+        } else {
+                view.showArray(labSystem.searchLoanByUserId(userId));
+        }
+    }
+
+    
+
 }
