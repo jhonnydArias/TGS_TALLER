@@ -11,7 +11,6 @@ public class View {
     private final Scanner scanner = new Scanner(System.in);
 
     //MENSAJES Y LECTURA
-
     public void showMessage(String message) {
         System.out.println(message);
     }
