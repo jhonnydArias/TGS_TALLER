@@ -16,6 +16,10 @@ public class Loan {
         this.loanDate = new Date(System.currentTimeMillis());
     }
 
+    public boolean isActive(){ 
+        return returnDate == null; //Mientras returnDate sea null, el préstamo está activo
+    }
+
     // Getters and Setters
     public User getUser() {
         return user;    
