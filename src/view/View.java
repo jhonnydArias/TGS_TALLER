@@ -1,5 +1,6 @@
 package view;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ import model.LoanObject;
 import utilities.Utils;
 
 public class View {
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in,Charset.forName(System.getProperty("stdin.encoding", Charset.defaultCharset().name())));
 
     //MENSAJES Y LECTURA
     public void showMessage(String message) {

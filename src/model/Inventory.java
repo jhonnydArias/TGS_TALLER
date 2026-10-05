@@ -2,10 +2,10 @@ package model;
 
 import java.util.ArrayList;
 
+import utilities.Utils;
+
 public class Inventory {
     private ArrayList<LoanObject> loanObjects;
-
-
 
     public Inventory() {
         this.loanObjects = new ArrayList<>();
@@ -19,17 +19,17 @@ public class Inventory {
         this.loanObjects = loanObjects;
     }
 
-    public ArrayList<LoanObject> searchByType(String type){
+    public ArrayList<LoanObject> searchByType(String type) {
         ArrayList<LoanObject> results = new ArrayList<>();
         for (LoanObject loanObject : loanObjects) {
-            if (loanObject.getType().equalsIgnoreCase(type)) {
+            if (Utils.normalize(loanObject.getType()).equals(Utils.normalize(type))) {
                 results.add(loanObject);
             }
         }
         return results;
     }
 
-    public LoanObject searchById (int id){
+    public LoanObject searchById(int id) {
         for (LoanObject loanObject : loanObjects) {
             if (loanObject.getId() == id) {
                 return loanObject;
@@ -38,16 +38,16 @@ public class Inventory {
         return null;
     }
 
-    public boolean createLoanObject (int id, String brand, String type, String description){
+    public boolean createLoanObject(int id, String brand, String type, String description) {
         if (searchById(id) != null) {
-            return false; 
+            return false;
         }
         LoanObject loanObject = new LoanObject(id, brand, type, description);
         loanObjects.add(loanObject);
         return true;
     }
 
-    public boolean deleteLoanObjectById (int id){
+    public boolean deleteLoanObjectById(int id) {
         LoanObject loanObject = searchById(id);
         if (loanObject != null) {
             loanObjects.remove(loanObject);
@@ -55,24 +55,25 @@ public class Inventory {
         }
         return false;
     }
-    
 
-    /*public boolean updateStatusLoanObject (int id, boolean isAvailable){
-        LoanObject loanObject = searchById(id);
-        if (loanObject != null) {
-            loanObject.setAvailable(isAvailable);
-            return true;
-        }
-        return false;
-    }*/
+    /*
+     * public boolean updateStatusLoanObject (int id, boolean isAvailable){
+     * LoanObject loanObject = searchById(id);
+     * if (loanObject != null) {
+     * loanObject.setAvailable(isAvailable);
+     * return true;
+     * }
+     * return false;
+     * }
+     */
 
-        public ArrayList<LoanObject> getAvailableLoanObjects() {
-            ArrayList<LoanObject> availableObjects = new ArrayList<>();
-            for (LoanObject loanObject : loanObjects) {
-                if (loanObject.isAvailable()) {
-                    availableObjects.add(loanObject);
-                }
+    public ArrayList<LoanObject> getAvailableLoanObjects() {
+        ArrayList<LoanObject> availableObjects = new ArrayList<>();
+        for (LoanObject loanObject : loanObjects) {
+            if (loanObject.isAvailable()) {
+                availableObjects.add(loanObject);
             }
-            return availableObjects;
         }
+        return availableObjects;
+    }
 }

@@ -16,7 +16,7 @@ public class Control {
         labSystem.saveData();
     }
 
-    // ===================== MENÚ PRINCIPAL =====================
+    // MENÚ PRINCIPAL
 
     public void run() {
         view.showMessage(Utils.WELCOME);
@@ -213,12 +213,19 @@ public class Control {
 
     private void createLoanObject() {
         view.showMessage(Utils.CREATE_TITLE);
+
         int id = view.readInt(Utils.ASK_OBJECT_ID);
+        while (labSystem.existsLoanObject(id)) {
+            view.showMessage(Utils.CREATE_DUPLICATE_ID);
+            id = view.readInt(Utils.ASK_OBJECT_ID); // <-- esta línea falta
+        }
+
         String brand = view.readRequiredString(Utils.ASK_OBJECT_BRAND);
         String type = view.readRequiredString(Utils.ASK_OBJECT_TYPE);
         String description = view.readRequiredString(Utils.ASK_OBJECT_DESCRIPTION);
 
         if (labSystem.createLoanObject(id, brand, type, description)) {
+            saveChanges();
             view.showMessage(Utils.CREATE_OK);
         } else {
             view.showMessage(Utils.CREATE_DUPLICATE_ID);
@@ -238,7 +245,11 @@ public class Control {
         }
     }
 
-
+    private void saveChanges() {
+        if (!labSystem.saveData()) {
+            view.showMessage(Utils.SAVE_ERROR);
+        }
+    }
 
     public static void main(String[] args) {
         new Control();

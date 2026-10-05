@@ -1,5 +1,7 @@
 package utilities;
 
+import java.text.Normalizer;
+
 public class Utils {
 
     public static final String WELCOME = "LABORATORIO DE COMPUTO";
@@ -14,36 +16,36 @@ public class Utils {
 
     // MENU PRINCIPAL
     public static final String[] MAIN_MENU = {
-        "\n MENU PRINCIPAL",
-        "\n 1. Prestar un equipo",
-        "\n 2. Devolver un equipo",
-        "\n 3. Consultar inventario de equipos",
-        "\n 4. Consultar registro de prestamos",
-        "\n 5. Registrar un equipo nuevo",
-        "\n 6. Eliminar un equipo del inventario",
-        "\n 0. Salir"
+            "\n MENU PRINCIPAL",
+            "\n 1. Prestar un equipo",
+            "\n 2. Devolver un equipo",
+            "\n 3. Consultar inventario de equipos",
+            "\n 4. Consultar registro de prestamos",
+            "\n 5. Registrar un equipo nuevo",
+            "\n 6. Eliminar un equipo del inventario",
+            "\n 0. Salir"
     };
 
     // SUBMENU: INVENTARIO
     public static final String[] INVENTORY_MENU = {
-        "\n CONSULTAR INVENTARIO DE EQUIPOS",
-        "\n 1. Ver todos los equipos",
-        "\n 2. Ver solo los equipos disponibles para prestamo",
-        "\n 3. Buscar equipos por tipo",
-        "\n 4. Buscar un equipo por numero de inventario",
-        "\n 0. Volver al menu principal"
+            "\n CONSULTAR INVENTARIO DE EQUIPOS",
+            "\n 1. Ver todos los equipos",
+            "\n 2. Ver solo los equipos disponibles para prestamo",
+            "\n 3. Buscar equipos por tipo",
+            "\n 4. Buscar un equipo por numero de inventario",
+            "\n 0. Volver al menu principal"
     };
 
     // SUBMENU: PRESTAMOS
     public static final String[] LOANS_MENU = {
-        "\n CONSULTAR PRESTAMOS",
-        "\n 1. Ver prestamos activos",
-        "\n 2. Ver prestamos activos de un tipo de equipo",
-        "\n 3. Historial de un equipo",
-        "\n 4. Historial de un tipo de equipo",
-        "\n 5. Historial de una persona (por identificacion)",
-        "\n 6. Historial de una persona (por nombre)",
-        "\n 0. Volver al menu principal"
+            "\n CONSULTAR PRESTAMOS",
+            "\n 1. Ver prestamos activos",
+            "\n 2. Ver prestamos activos de un tipo de equipo",
+            "\n 3. Historial de un equipo",
+            "\n 4. Historial de un tipo de equipo",
+            "\n 5. Historial de una persona (por identificacion)",
+            "\n 6. Historial de una persona (por nombre)",
+            "\n 0. Volver al menu principal"
     };
 
     // DATOS QUE PIDE LA VISTA
@@ -52,7 +54,7 @@ public class Utils {
     public static final String ASK_OBJECT_TYPE = "Tipo de equipo (ej: portatil, videoproyector, adaptador HDMI): ";
     public static final String ASK_OBJECT_DESCRIPTION = "Descripcion: ";
     public static final String ASK_USER_ID = "Identificacion de la persona: ";
-    public static final String ASK_USER_NAME = "Nombre de la persona: ";
+    public static final String ASK_USER_NAME = "Nombre y apellido de la persona: ";
     public static final String ASK_USER_PROGRAM = "Programa academico: ";
 
     // PRESTAR
@@ -82,13 +84,23 @@ public class Utils {
     public static final String STATUS_LOANED = "Prestado";
     public static final String NOT_RETURNED = "En prestamo";
 
-    // Encabezados y formatos de tabla (se usan con String.format)
-    public static final String OBJECT_HEADER =
-            String.format("%-8s %-14s %-24s %-12s %s", "ID", "MARCA", "TIPO", "ESTADO", "DESCRIPCION");
+    // Encabezados y formatos de tabla
+    public static final String OBJECT_HEADER = String.format("%-8s %-14s %-24s %-12s %s", "ID", "MARCA", "TIPO",
+            "ESTADO", "DESCRIPCION");
     public static final String OBJECT_ROW = "%-8d %-14s %-24s %-12s %s";
 
-    public static final String LOAN_HEADER =
-            String.format("%-8s %-22s %-12s %-24s %-24s %-12s %s",
-                    "EQUIPO", "TIPO / MARCA", "ID PERSONA", "NOMBRE", "PROGRAMA", "PRESTADO", "DEVUELTO");
+    public static final String LOAN_HEADER = String.format("%-8s %-22s %-12s %-24s %-24s %-12s %s",
+            "EQUIPO", "TIPO / MARCA", "ID PERSONA", "NOMBRE", "PROGRAMA", "PRESTADO", "DEVUELTO");
     public static final String LOAN_ROW = "%-8d %-22s %-12d %-24s %-24s %-12s %s";
+
+    // Normalizacion de texto
+    public static String normalize(String text) {
+        if (text == null) {
+            return "";
+        }
+        return Normalizer.normalize(text, Normalizer.Form.NFD)
+                .replaceAll("\\p{M}", "")
+                .toLowerCase()
+                .trim();
+    }
 }
