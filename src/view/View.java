@@ -62,7 +62,7 @@ public class View {
         System.out.println();
     }
 
-    public void showMainMenu() {
+    public void showMainMenu() {    
         showMenu(Utils.MAIN_MENU_TITLE);
     }
 

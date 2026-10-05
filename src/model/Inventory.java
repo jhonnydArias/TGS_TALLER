@@ -7,8 +7,8 @@ public class Inventory {
 
 
 
-    public Inventory(ArrayList<LoanObject> loanObjects) {
-        this.loanObjects = loanObjects;
+    public Inventory() {
+        this.loanObjects = new ArrayList<>();
     }
 
     public ArrayList<LoanObject> getLoanObjects() {
@@ -55,6 +55,7 @@ public class Inventory {
         }
         return false;
     }
+    
 
     /*public boolean updateStatusLoanObject (int id, boolean isAvailable){
         LoanObject loanObject = searchById(id);
@@ -64,4 +65,14 @@ public class Inventory {
         }
         return false;
     }*/
+
+        public ArrayList<LoanObject> getAvailableLoanObjects() {
+            ArrayList<LoanObject> availableObjects = new ArrayList<>();
+            for (LoanObject loanObject : loanObjects) {
+                if (loanObject.isAvailable()) {
+                    availableObjects.add(loanObject);
+                }
+            }
+            return availableObjects;
+        }
 }

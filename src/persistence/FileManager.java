@@ -17,8 +17,8 @@ import model.LoanRecord;
 import model.User;
 
 public class FileManager {
-    private static final String INVENTORY_FILE = "inventario.csv";
-    private static final String LOAN_RECORD_FILE = "prestamos.csv";
+    private static final String INVENTORY_FILE = "data/inventario.csv";
+    private static final String LOAN_RECORD_FILE = "data/prestamos.csv";
     private static final String SEPARATOR = ";";
     private static final String NO_DATE = "-"; // fecha de devolución de un préstamo activo
 
@@ -69,7 +69,7 @@ public class FileManager {
     // CARGAR
 
     public Inventory loadInventory() {
-        Inventory inventory = new Inventory(new ArrayList<>());
+        Inventory inventory = new Inventory();
 
         for (String line : readDataLines(INVENTORY_FILE)) {
             String[] f = line.split(SEPARATOR, -1);

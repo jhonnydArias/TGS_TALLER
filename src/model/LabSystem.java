@@ -2,14 +2,18 @@ package model;
 
 import java.util.ArrayList;
 
+import persistence.FileManager;
+
 public class LabSystem {
 
     private Inventory inventory;
     private LoanRecord loanRecord;
+    private FileManager fileManager;
 
-    public LabSystem(Inventory inventory, LoanRecord loanRecord) {
-        this.inventory = inventory;
-        this.loanRecord = loanRecord;
+    public LabSystem() {
+        this.fileManager = new FileManager();
+        this.inventory = fileManager.loadInventory();
+        this.loanRecord = fileManager.loadLoanRecord(inventory);
     }
     public Inventory getInventory() {
         return inventory;
@@ -100,5 +104,49 @@ public class LabSystem {
             return true;
         }
         return false; //no se encontró un préstamo activo para este objeto
+    }
+
+    public ArrayList<LoanObject> getAllLoanObjects() {
+        return inventory.getLoanObjects();
+    }
+
+    public ArrayList<LoanObject> getAvailableLoanObjects() {
+        return inventory.getAvailableLoanObjects();
+    }
+
+    public ArrayList<Loan> getActiveLoans() {
+    ArrayList<Loan> activeLoans = new ArrayList<>();
+    for (LoanObject obj : inventory.getLoanObjects()) {
+        Loan loan = loanRecord.searchActiveByLoanObjectId(obj.getId());
+        if (loan != null) {
+            activeLoans.add(loan);
+        }
+    }
+    return activeLoans;
+    }
+
+// Para validar antes de prestar
+    public boolean existsLoanObject(int id) {
+        return inventory.searchById(id) != null;
+    }
+
+    public boolean isLoanObjectAvailable(int id) {
+        LoanObject obj = inventory.searchById(id);
+        return obj != null && obj.isAvailable();
+    }
+
+    public ArrayList<LoanObject> searchLoanObjectsById(int id) {
+        ArrayList<LoanObject> result = new ArrayList<>();
+        LoanObject obj = inventory.searchById(id);
+        if (obj != null) {
+            result.add(obj);
+        }
+        return result;
+    }
+
+    public boolean saveData() {
+    boolean inventorySaved = fileManager.saveInventory(inventory);
+    boolean loansSaved = fileManager.saveLoanRecord(loanRecord);
+    return inventorySaved && loansSaved;
     }
 }

@@ -1,0 +1,15 @@
+id;marca;tipo;descripcion
+101;Lenovo;portátil;ThinkPad E14, Core i5, 8 GB RAM
+102;Lenovo;portátil;ThinkPad E14, Core i5, 8 GB RAM
+103;HP;portátil;ProBook 450, Core i7, 16 GB RAM
+104;Dell;portátil;Latitude 3420, Core i5, 8 GB RAM
+201;Epson;videoproyector;PowerLite X49, 3600 lúmenes
+202;Epson;videoproyector;PowerLite X49, 3600 lúmenes
+203;BenQ;videoproyector;MS550, 3600 lúmenes
+301;Ugreen;adaptador HDMI;USB-C a HDMI 4K
+302;Ugreen;adaptador HDMI;USB-C a HDMI 4K
+303;Genérico;adaptador HDMI;VGA a HDMI con audio
+401;Logitech;mando de presentación;R400 con puntero láser
+402;Targus;mando de presentación;AMP13 con puntero láser
+501;Belkin;cable de red;Cat6, 3 metros
+502;Belkin;cable de red;Cat6, 5 metros
