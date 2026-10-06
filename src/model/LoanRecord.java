@@ -61,7 +61,6 @@ public class LoanRecord {
     return results;
 }
     
-// Busqueda de prestamoos activos.
 
     public ArrayList<Loan> searchActiveByLoanObjectType(String type) {
     ArrayList<Loan> results = new ArrayList<>();

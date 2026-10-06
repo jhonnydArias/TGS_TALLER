@@ -71,7 +71,7 @@ public class View {
         showMenu(Utils.LOANS_MENU);
     }
 
-    //TABLAS
+    
     public void showObjects(ArrayList<LoanObject> objects) {
         if (objects == null || objects.isEmpty()) {
             showMessage(Utils.NO_RESULTS);

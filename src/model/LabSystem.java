@@ -9,6 +9,7 @@ public class LabSystem {
     private Inventory inventory;
     private LoanRecord loanRecord;
     private FileManager fileManager;
+    private boolean lastSaveSuccessful = true;
 
     public LabSystem() {
         this.fileManager = new FileManager();
@@ -39,14 +40,22 @@ public class LabSystem {
     }
 
     public boolean createLoanObject(int id, String brand, String type, String description) {
-        return inventory.createLoanObject(id, brand, type, description);
+        boolean created = inventory.createLoanObject(id, brand, type, description);
+        if (created) {
+            saveInventory();
+        }
+        return created; 
     }
 
     public boolean deleteLoanObjectById(int id) {
-        if(loanRecord.searchActiveByLoanObjectId(id) != null){
+        if (loanRecord.searchActiveByLoanObjectId(id) != null) {
             return false;
         }
-        return inventory.deleteLoanObjectById(id);
+        boolean deleted = inventory.deleteLoanObjectById(id);
+        if (deleted) {
+            saveInventory();
+        }
+        return deleted;
     }
 
     //FUNCIONES DEL ADMINISTRADOR EN EL REGISTRO DE PRÉSTAMOS
@@ -77,33 +86,28 @@ public class LabSystem {
 
     public boolean addLoan(int objectId, int userId, String userName, String academicProgram) {
         LoanObject loanObject = inventory.searchById(objectId);
-
-        if (loanObject == null) { //el equipo no existe
+        if (loanObject == null || !loanObject.isAvailable()) {
             return false;
         }
-        if (!loanObject.isAvailable()) { //ya está prestado
-            return false;
-        }
-
         loanRecord.addLoan(loanObject, userId, userName, academicProgram);
-        loanObject.setAvailable(false); // pasa a no disponible
+        loanObject.setAvailable(false);
+        saveLoanRecord();
         return true;
     }
 
     public boolean returnLoan(int objectId) {
         LoanObject loanObject = inventory.searchById(objectId);
-
-        if (loanObject == null) { //el equipo no existe
+        if (loanObject == null) {
             return false;
         }
-
         Loan activeLoan = loanRecord.searchActiveByLoanObjectId(objectId);
-        if (activeLoan != null) {
-            activeLoan.setReturnDate(new java.sql.Date(System.currentTimeMillis()));
-            loanObject.setAvailable(true); // pasa a disponible
-            return true;
+        if (activeLoan == null) {
+            return false;
         }
-        return false; //no se encontró un préstamo activo para este objeto
+        activeLoan.setReturnDate(new java.sql.Date(System.currentTimeMillis()));
+        loanObject.setAvailable(true);
+        saveLoanRecord();
+        return true;
     }
 
     public ArrayList<LoanObject> getAllLoanObjects() {
@@ -125,7 +129,6 @@ public class LabSystem {
     return activeLoans;
     }
 
-// Para validar antes de prestar
     public boolean existsLoanObject(int id) {
         return inventory.searchById(id) != null;
     }
@@ -145,8 +148,20 @@ public class LabSystem {
     }
 
     public boolean saveData() {
-    boolean inventorySaved = fileManager.saveInventory(inventory);
-    boolean loansSaved = fileManager.saveLoanRecord(loanRecord);
-    return inventorySaved && loansSaved;
+        boolean inventorySaved = fileManager.saveInventory(inventory);
+        boolean loansSaved = fileManager.saveLoanRecord(loanRecord);
+        return inventorySaved && loansSaved;
+    }
+
+    private void saveInventory() {
+        lastSaveSuccessful = fileManager.saveInventory(inventory);
+    }
+
+    private void saveLoanRecord() {
+    lastSaveSuccessful = fileManager.saveLoanRecord(loanRecord);
+    }
+
+    public boolean isLastSaveSuccessful() {
+        return lastSaveSuccessful;
     }
 }

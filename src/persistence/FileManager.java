@@ -20,7 +20,7 @@ public class FileManager {
     private static final String INVENTORY_FILE = "data/inventario.csv";
     private static final String LOAN_RECORD_FILE = "data/prestamos.csv";
     private static final String SEPARATOR = ";";
-    private static final String NO_DATE = "-"; // fecha de devolución de un préstamo activo
+    private static final String NO_DATE = "-"; 
 
     private static final String INVENTORY_HEADER = "id;marca;tipo;descripcion";
     private static final String LOAN_HEADER =
@@ -127,7 +127,7 @@ public class FileManager {
                 }
 
                 loanRecord.getLoans().add(loan);
-            } catch (IllegalArgumentException e) { // id no numérico o fecha mal escrita
+            } catch (IllegalArgumentException e) { 
                 System.out.println("Préstamo ignorado (dato inválido): " + line);
             }
         }

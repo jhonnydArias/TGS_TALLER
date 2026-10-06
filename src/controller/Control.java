@@ -13,10 +13,9 @@ public class Control {
         this.labSystem = new LabSystem();
         this.view = new View();
         run();
-        labSystem.saveData();
     }
 
-    // ===================== MENÚ PRINCIPAL =====================
+    // MENU
 
     public void run() {
         view.showMessage(Utils.WELCOME);
@@ -49,6 +48,13 @@ public class Control {
             view.showMainMenu();
             option = view.readOption();
         }
+        view.showMessage(Utils.GOODBYE);
+    }
+
+    private void reportSaveError() {
+        if (!labSystem.isLastSaveSuccessful()) {
+            view.showMessage(Utils.SAVE_ERROR);
+        }
     }
 
     // 1=
@@ -72,6 +78,7 @@ public class Control {
 
         if (labSystem.addLoan(objectId, userId, userName, userProgram)) {
             view.showMessage(Utils.LOAN_OK);
+            reportSaveError();
         } else {
             view.showMessage(Utils.LOAN_NOT_AVAILABLE);
         }
@@ -85,6 +92,7 @@ public class Control {
 
         if (labSystem.returnLoan(objectId)) {
             view.showMessage(Utils.RETURN_OK);
+            reportSaveError();
         } else {
             view.showMessage(Utils.RETURN_FAIL);
         }
@@ -220,6 +228,7 @@ public class Control {
 
         if (labSystem.createLoanObject(id, brand, type, description)) {
             view.showMessage(Utils.CREATE_OK);
+            reportSaveError();
         } else {
             view.showMessage(Utils.CREATE_DUPLICATE_ID);
         }
@@ -233,6 +242,7 @@ public class Control {
 
         if (labSystem.deleteLoanObjectById(id)) {
             view.showMessage(Utils.DELETE_OK);
+            reportSaveError();
         } else {
             view.showMessage(Utils.DELETE_FAIL);
         }

@@ -57,14 +57,6 @@ public class Inventory {
     }
     
 
-    /*public boolean updateStatusLoanObject (int id, boolean isAvailable){
-        LoanObject loanObject = searchById(id);
-        if (loanObject != null) {
-            loanObject.setAvailable(isAvailable);
-            return true;
-        }
-        return false;
-    }*/
 
         public ArrayList<LoanObject> getAvailableLoanObjects() {
             ArrayList<LoanObject> availableObjects = new ArrayList<>();
